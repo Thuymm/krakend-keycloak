@@ -1,0 +1,22 @@
+{
+      "endpoint": "/login",
+      "method": "POST",
+      "input_headers": ["*"],
+      "backend": [
+        {
+          "url_pattern": "/realms/myrealm/protocol/openid-connect/token",
+          "host": ["{{ .host }}:{{ .port }}"]
+        }
+      ]
+    },
+    {
+      "endpoint": "/introspect",
+      "method": "POST",
+      "input_headers": ["*"],
+      "backend": [
+        {
+          "url_pattern": "/realms/myrealm/protocol/openid-connect/token/introspect",
+          "host": ["{{ .host }}:{{ .port }}"]
+        }
+      ]
+    }

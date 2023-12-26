@@ -1,0 +1,43 @@
+{
+      "endpoint": "/backend",
+      "method": "GET",
+      "input_headers": ["*"],
+      "backend": [
+        {
+          "method": "GET",
+          "url_pattern": "/hello",
+          "host": ["{{ .backend_server.host }}:{{ .backend_server.port }}"],
+          "extra_config": {
+            "backend/http": {
+            "return_error_details": "from_backend_server"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "endpoint": "/backend/hello",
+      "method": "GET",
+      "input_headers": ["*"],
+      "backend": [
+        {
+          "method": "GET",
+          "url_pattern": "/auth/hello",
+          "host": ["{{ .backend_server.host }}:{{ .backend_server.port }}"],
+          "extra_config": {
+            "backend/http": {
+            "return_error_details": "from_backend_server"
+            }
+          }
+        }
+      ],
+      "extra_config": {
+        "auth/validator": {
+            "issuer": "{{ .keycloak.host }}:{{ .keycloak.port }}/realms/myrealm",
+            "alg": "RS256",
+            "jwk_url": "{{ .keycloak.host }}:{{ .keycloak.port }}/realms/myrealm/protocol/openid-connect/certs",
+            "disable_jwk_security": true,
+            "operation_debug": true
+        }
+      }
+    }

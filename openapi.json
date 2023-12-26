@@ -1,0 +1,312 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "My Project",
+    "description": "",
+    "version": "1.0.0"
+  },
+  "tags": [
+    {
+      "name": "KrakenD api gateway"
+    },
+    {
+      "name": "KrakenD api gateway/backend"
+    }
+  ],
+  "paths": {
+    "/login": {
+      "post": {
+        "summary": "auth login keycloak token",
+        "x-apidog-folder": "KrakenD api gateway",
+        "x-apidog-status": "developing",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "KrakenD api gateway"
+        ],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "client_id": {
+                    "type": "string",
+                    "example": "myclient"
+                  },
+                  "client_secret": {
+                    "type": "string",
+                    "example": "UHPDwwX7xhoiuiucKfFhdc7yWW0erf7I"
+                  },
+                  "username": {
+                    "type": "string",
+                    "example": "myuser"
+                  },
+                  "password": {
+                    "type": "string",
+                    "example": "testing123"
+                  },
+                  "grant_type": {
+                    "type": "string",
+                    "example": "password"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "access_token": {
+                      "type": "string"
+                    },
+                    "expires_in": {
+                      "type": "integer"
+                    },
+                    "not-before-policy": {
+                      "type": "integer"
+                    },
+                    "refresh_expires_in": {
+                      "type": "integer"
+                    },
+                    "refresh_token": {
+                      "type": "string"
+                    },
+                    "scope": {
+                      "type": "string"
+                    },
+                    "session_state": {
+                      "type": "string"
+                    },
+                    "token_type": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "access_token",
+                    "expires_in",
+                    "not-before-policy",
+                    "refresh_expires_in",
+                    "refresh_token",
+                    "scope",
+                    "session_state",
+                    "token_type"
+                  ],
+                  "x-apidog-ignore-properties": [],
+                  "x-apidog-orders": [
+                    "access_token",
+                    "expires_in",
+                    "not-before-policy",
+                    "refresh_expires_in",
+                    "refresh_token",
+                    "scope",
+                    "session_state",
+                    "token_type"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "x-run-in-apidog": "https://apidog.com/web/project/413586/apis/api-5063720-run",
+        "security": []
+      }
+    },
+    "/introspect": {
+      "post": {
+        "summary": "introspect token",
+        "x-apidog-folder": "KrakenD api gateway",
+        "x-apidog-status": "developing",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "KrakenD api gateway"
+        ],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "client_id": {
+                    "type": "string",
+                    "example": "myclient"
+                  },
+                  "client_secret": {
+                    "type": "string",
+                    "example": "UHPDwwX7xhoiuiucKfFhdc7yWW0erf7I"
+                  },
+                  "token": {
+                    "type": "string",
+                    "example": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJLNEZXRnlYbnZLcFRlWjUzYVdHLUhwcjlyWXVyaDR2QTNVSTFfdC1kZldJIn0.eyJleHAiOjE3MDM1ODY1MjgsImlhdCI6MTcwMzU4NjIyOCwianRpIjoiYTg3MWRhOWQtNzVlNi00ZmM5LWJlZTEtYzJkNjBiYzI2YTE3IiwiaXNzIjoiaHR0cDovL2tleWNsb2FrOjgwODAvcmVhbG1zL215cmVhbG0iLCJhdWQiOiJhY2NvdW50Iiwic3ViIjoiMWZmNjNiOTgtYTUwZi00Mzk0LWEyMjctODk1MzhiYTVkMjQyIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoibXljbGllbnQiLCJzZXNzaW9uX3N0YXRlIjoiNGZkMzlkYTMtNWIxNS00NzZjLTlhZGQtMzRjZjA4OGQ1Mzk1IiwiYWNyIjoiMSIsImFsbG93ZWQtb3JpZ2lucyI6WyJodHRwOi8vbG9jYWxob3N0OjgwODAiLCJodHRwOi8vbG9jYWxob3N0OjMwMDAiXSwicmVhbG1fYWNjZXNzIjp7InJvbGVzIjpbImRlZmF1bHQtcm9sZXMtbXlyZWFsbSIsIm9mZmxpbmVfYWNjZXNzIiwidW1hX2F1dGhvcml6YXRpb24iXX0sInJlc291cmNlX2FjY2VzcyI6eyJhY2NvdW50Ijp7InJvbGVzIjpbIm1hbmFnZS1hY2NvdW50IiwibWFuYWdlLWFjY291bnQtbGlua3MiLCJ2aWV3LXByb2ZpbGUiXX19LCJzY29wZSI6ImVtYWlsIHByb2ZpbGUiLCJzaWQiOiI0ZmQzOWRhMy01YjE1LTQ3NmMtOWFkZC0zNGNmMDg4ZDUzOTUiLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsIm5hbWUiOiJGb28gQmFyIiwicHJlZmVycmVkX3VzZXJuYW1lIjoibXl1c2VyIiwiZ2l2ZW5fbmFtZSI6IkZvbyIsImZhbWlseV9uYW1lIjoiQmFyIn0.NsBfAvdlC8Tv_RAm2MDIbLupsc-PbX6cEccVqiOQQGRofymvO9IajtcXGmlmIznlVPRAAW9GneV7fVFSjQNkP66FjB7uJdYFqks6q294KODEZ1KuqaWFej6DWrd14rCJGlJJ9pmUJUhDGZxkgFFTMJG0qVXSAWyMIMNLGCoaOUxwv21E9Y6k3ReXpo3-qMQxycTDDa5nLmnG72OcXJ46CgqUgP5ONrQz3lx7qlqed2-s69ijLrn3tBZLnGtOmomme8v9n7MBupjrw-SWprt04_s9gRm1Gi_D9ascPB0iOgxniPINYM1X5BZ08kmERi4n3c9WIkqaWHD3a2PcWzTNqQ"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "access_token": {
+                      "type": "string"
+                    },
+                    "expires_in": {
+                      "type": "integer"
+                    },
+                    "not-before-policy": {
+                      "type": "integer"
+                    },
+                    "refresh_expires_in": {
+                      "type": "integer"
+                    },
+                    "refresh_token": {
+                      "type": "string"
+                    },
+                    "scope": {
+                      "type": "string"
+                    },
+                    "session_state": {
+                      "type": "string"
+                    },
+                    "token_type": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "access_token",
+                    "expires_in",
+                    "not-before-policy",
+                    "refresh_expires_in",
+                    "refresh_token",
+                    "scope",
+                    "session_state",
+                    "token_type"
+                  ],
+                  "x-apidog-ignore-properties": [],
+                  "x-apidog-orders": [
+                    "access_token",
+                    "expires_in",
+                    "not-before-policy",
+                    "refresh_expires_in",
+                    "refresh_token",
+                    "scope",
+                    "session_state",
+                    "token_type"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "x-run-in-apidog": "https://apidog.com/web/project/413586/apis/api-5063721-run",
+        "security": []
+      }
+    },
+    "/backend": {
+      "get": {
+        "summary": "hello",
+        "x-apidog-folder": "KrakenD api gateway/backend",
+        "x-apidog-status": "developing",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "KrakenD api gateway/backend"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "message"
+                  ],
+                  "x-apidog-ignore-properties": [],
+                  "x-apidog-orders": [
+                    "message"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "x-run-in-apidog": "https://apidog.com/web/project/413586/apis/api-5063728-run",
+        "security": []
+      }
+    },
+    "/backend/hello": {
+      "get": {
+        "summary": "hello with auth guard",
+        "x-apidog-folder": "KrakenD api gateway/backend",
+        "x-apidog-status": "developing",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "KrakenD api gateway/backend"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "message"
+                  ],
+                  "x-apidog-ignore-properties": [],
+                  "x-apidog-orders": [
+                    "message"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "x-run-in-apidog": "https://apidog.com/web/project/413586/apis/api-5063729-run",
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {},
+    "securitySchemes": {
+      "bearer": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    }
+  },
+  "servers": []
+}

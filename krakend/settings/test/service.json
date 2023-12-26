@@ -1,0 +1,17 @@
+{
+  "port": 8080,
+  "debug_host": "http://localhost",
+  "gamespace": {
+    "host": "http://18.143.244.78",
+    "port": 9001
+  },
+  "logging_level": "DEBUG",
+  "keycloak": {
+    "host": "http://keycloak",
+    "port": 8080
+  },
+  "backend_server": {
+    "host": "http://backend_server",
+    "port": 3000
+  }
+}

@@ -1,0 +1,135 @@
+{
+  "$schema": "https://www.krakend.io/schema/krakend.json",
+  "version": 3,
+  "name": "My API Gateway",
+  "port": 8080,
+  "cache_ttl": "0s",
+  "debug_endpoint": true,
+  "extra_config": {
+    "telemetry/logging": {
+      "level": "DEBUG",
+      "prefix": "[KRAKEND]",
+      "syslog": false,
+      "stdout": true
+    },
+    "security/cors": {
+      "allow_origins": [ "*" ],
+      "allow_methods": [ "GET", "HEAD", "POST", "PUT", "PATCH", "DELETE", "OPTIONS" ],
+      "allow_headers": [ "*" ],
+      "max_age": "0s"
+    }
+  },
+  "endpoints": [
+    {
+      "endpoint": "/debug",
+      "method": "GET",
+      "input_headers": ["*"],
+      "backend": [
+        {
+          "url_pattern": "/__debug/",
+          "host": ["http://localhost:8080"]
+        }
+      ]
+    },
+    {
+      "endpoint": "/login",
+      "method": "POST",
+      "input_headers": ["*"],
+      "backend": [
+        {
+          "url_pattern": "/realms/myrealm/protocol/openid-connect/token",
+          "host": ["http://keycloak:8080"]
+        }
+      ]
+    },
+    {
+      "endpoint": "/introspect",
+      "method": "POST",
+      "input_headers": ["*"],
+      "backend": [
+        {
+          "url_pattern": "/realms/myrealm/protocol/openid-connect/token/introspect",
+          "host": ["http://keycloak:8080"]
+        }
+      ]
+    },
+    {
+      "endpoint": "/backend",
+      "method": "GET",
+      "input_headers": ["*"],
+      "backend": [
+        {
+          "method": "GET",
+          "url_pattern": "/hello",
+          "host": ["http://backend_server:3000"],
+          "extra_config": {
+            "backend/http": {
+            "return_error_details": "from_backend_server"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "endpoint": "/backend/hello",
+      "method": "GET",
+      "input_headers": ["*"],
+      "backend": [
+        {
+          "method": "GET",
+          "url_pattern": "/auth/hello",
+          "host": ["http://backend_server:3000"],
+          "extra_config": {
+            "backend/http": {
+            "return_error_details": "from_backend_server"
+            }
+          }
+        }
+      ],
+      "extra_config": {
+        "auth/validator": {
+            "issuer": "http://keycloak:8080/realms/myrealm",
+            "alg": "RS256",
+            "jwk_url": "http://keycloak:8080/realms/myrealm/protocol/openid-connect/certs",
+            "disable_jwk_security": true,
+            "operation_debug": true
+        }
+      }
+    },
+    {
+      "endpoint": "/gamespace",
+      "method": "POST",
+      "input_headers": ["*"],
+      "backend": [
+        {
+          "method": "POST",
+          "url_pattern": "/__debug/gamespace/auth/",
+          "host": ["http://18.143.244.78:9001"],
+          "extra_config": {
+            "backend/http": {
+            "return_error_details": "from_gamespace"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "endpoint": "/energy-status",
+      "method": "GET",
+      "input_headers": ["*"],
+      "backend": [
+        {
+          "method": "GET",
+          "url_pattern": "/gamespace/users/energy-status/",
+          "host": ["http://18.143.244.78:9001"],
+          "extra_config": {
+            "backend/http": {
+              "return_error_details": "from_gamespace"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "output_encoding": "json"
+}
