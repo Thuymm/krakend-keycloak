@@ -95,41 +95,6 @@
             "operation_debug": true
         }
       }
-    },
-    {
-      "endpoint": "/gamespace",
-      "method": "POST",
-      "input_headers": ["*"],
-      "backend": [
-        {
-          "method": "POST",
-          "url_pattern": "/__debug/gamespace/auth/",
-          "host": ["http://18.143.244.78:9001"],
-          "extra_config": {
-            "backend/http": {
-            "return_error_details": "from_gamespace"
-            }
-          }
-        }
-      ]
-    },
-    {
-      "endpoint": "/energy-status",
-      "method": "GET",
-      "input_headers": ["*"],
-      "backend": [
-        {
-          "method": "GET",
-          "url_pattern": "/gamespace/users/energy-status/",
-          "host": ["http://18.143.244.78:9001"],
-          "extra_config": {
-            "backend/http": {
-              "return_error_details": "from_gamespace"
-            }
-          }
-        }
-      ]
-    }
-  ],
+    }  ],
   "output_encoding": "json"
 }

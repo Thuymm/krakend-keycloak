@@ -22,8 +22,6 @@
       ]
     },
     {{ template "keycloak.tmpl" .service.keycloak }},
-    {{ template "backend_server.tmpl" .service }},
-    {{ template "gamespace.tmpl" .service.gamespace }}
-  ],
+    {{ template "backend_server.tmpl" .service }}  ],
   "output_encoding": "json"
 }

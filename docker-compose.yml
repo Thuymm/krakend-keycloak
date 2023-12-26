@@ -16,18 +16,18 @@ services:
     container_name: krakend
     image: devopsfaith/krakend:watch
     volumes:
-      - "./:/etc/krakend/"
+      - "./krakend:/etc/krakend/"
     ports:
       - 8080:8080
     environment:
       - FC_ENABLE=1
-      - FC_OUT=krakend/out.json
-      - FC_PARTIALS=krakend/partials
-      - FC_SETTINGS=krakend/settings/test
-      - FC_TEMPLATES=krakend/templates
+      - FC_OUT=out.json
+      - FC_PARTIALS=partials
+      - FC_SETTINGS=settings/test
+      - FC_TEMPLATES=templates
     networks:
       - gateway
-    command: ["run", "-dc", "krakend/krakend.tmpl"]
+    command: ["run", "-dc", "krakend.tmpl"]
 
   keycloak:
     container_name: keycloak
