@@ -9,6 +9,8 @@ services:
       - ./server:/app
     ports:
       - 3000:3000
+    depends_on:
+      - krakend
     networks:
       - gateway
 
@@ -25,6 +27,8 @@ services:
       - FC_PARTIALS=partials
       - FC_SETTINGS=settings/test
       - FC_TEMPLATES=templates
+    depends_on:
+      - keycloak
     networks:
       - gateway
     command: ["run", "-dc", "krakend.tmpl"]
@@ -70,6 +74,11 @@ services:
       - 8088:80
     environment:
       - PMA_ARBITRARY=1
+      - PMA_HOST=mysqldb
+      - PMA_USER=root
+      - PMA_PASSWORD=root
+    depends_on:
+      - db
     networks:
       - gateway
 
